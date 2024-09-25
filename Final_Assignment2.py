@@ -9,9 +9,7 @@ class VectorSpaceModel:
         self.num_documents = 0                   
 
     def index_document(self, doc_id, document):
-        """
-        Indexes a document by updating the inverted index and computing document length.
-        """
+       
         self.num_documents += 1
         term_freqs = Counter(document)  
         doc_length = 0
@@ -24,18 +22,14 @@ class VectorSpaceModel:
         self.doc_lengths[doc_id] = math.sqrt(doc_length)  
 
     def compute_idf(self, term):
-        """
-        Compute inverse document frequency (idf) for a given term.
-        """
+       
         df = len(self.inverted_index[term]) 
         if df == 0:
             return 0
         return math.log10(self.num_documents / df)
 
     def rank_documents(self, query):
-        """
-        Rank documents based on cosine similarity between the query and document vectors.
-        """
+       
         query_terms = Counter(query)
         query_vector = {}
         query_length = 0
